@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Biblioteca</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- BARRA LATERAL -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="icon">📚</span>
+                <h1>Biblioteca</h1>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" onclick="mostrarSecao('livros')">
+                    <span>📖</span> Livros
+                </button>
+                <button class="nav-item" onclick="mostrarSecao('usuarios')">
+                    <span>👥</span> Usuários
+                </button>
+                <button class="nav-item" onclick="mostrarSecao('emprestimos')">
+                    <span>📋</span> Empréstimos
+                </button>
+            </nav>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+            <!-- SEÇÃO DE LIVROS -->
+            <section id="livros" class="content-section active">
+                <header class="section-header">
+                    <h2>Gestão de Livros</h2>
+                    <p>Cadastre novos livros e gerencie o acervo da biblioteca.</p>
+                </header>
+                
+                <div class="grid-container">
+                    <div class="card form-card">
+                        <h3>Cadastrar Livro</h3>
+                        <form id="formLivro">
+                            <div class="input-group">
+                                <label for="titulo">Título</label>
+                                <input type="text" id="titulo" placeholder="Ex: Dom Casmurro" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="autor">Autor</label>
+                                <input type="text" id="autor" placeholder="Ex: Machado de Assis" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="ano">Ano de Publicação</label>
+                                <input type="number" id="ano" placeholder="Ex: 1899" min="0">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Adicionar Livro</button>
+                        </form>
+                    </div>
+
+                    <div class="card list-card">
+                        <h3>Acervo Cadastrado</h3>
+                        <div id="listaLivros" class="items-grid">
+                            <p class="loading">Carregando livros...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE USUÁRIOS -->
+            <section id="usuarios" class="content-section">
+                <header class="section-header">
+                    <h2>Gestão de Usuários</h2>
+                    <p>Cadastre leitores e gerencie os usuários do sistema.</p>
+                </header>
+
+                <div class="grid-container">
+                    <div class="card form-card">
+                        <h3>Cadastrar Usuário</h3>
+                        <form id="formUsuario">
+                            <div class="input-group">
+                                <label for="nome">Nome Completo</label>
+                                <input type="text" id="nome" placeholder="Digite o nome do usuário" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" id="email" placeholder="usuario@email.com">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Adicionar Usuário</button>
+                        </form>
+                    </div>
+
+                    <div class="card list-card">
+                        <h3>Usuários Cadastrados</h3>
+                        <div id="listaUsuarios" class="items-grid">
+                            <p class="loading">Carregando usuários...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE EMPRÉSTIMOS -->
+            <section id="emprestimos" class="content-section">
+                <header class="section-header">
+                    <h2>Empréstimos e Devoluções</h2>
+                    <p>Registre novos empréstimos e controle a devolução de livros.</p>
+                </header>
+
+                <div class="grid-container">
+                    <div class="card form-card">
+                        <h3>Novo Empréstimo</h3>
+                        <form id="formEmprestimo">
+                            <div class="input-group">
+                                <label for="livroEmprestimo">Livro</label>
+                                <select id="livroEmprestimo" required>
+                                    <option value="">Selecione um livro...</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label for="usuarioEmprestimo">Usuário</label>
+                                <select id="usuarioEmprestimo" required>
+                                    <option value="">Selecione um usuário...</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Registrar Empréstimo</button>
+                        </form>
+                    </div>
+
+                    <div class="card list-card">
+                        <h3>Histórico de Empréstimos</h3>
+                        <div id="listaEmprestimos" class="items-grid">
+                            <p class="loading">Carregando empréstimos...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- BIBLIOTECA DO SUPABASE E SCRIPT DA APLICAÇÃO -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
